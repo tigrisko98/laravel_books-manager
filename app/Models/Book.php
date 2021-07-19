@@ -9,4 +9,8 @@ class Book extends Model
 {
     protected $guarded = [];
 
+    public function scopeIsArchived($query)
+    {
+        return $query->where('is_archived', 0);
+    }
 }
