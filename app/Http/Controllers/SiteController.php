@@ -9,8 +9,8 @@ class SiteController extends Controller
 {
     public function index()
     {
-        $booksList = Book::getBooksList()->get();
-        
+        $booksList = Book::all();
+
         return view('site', ['booksList' => $booksList]);
     }
 }

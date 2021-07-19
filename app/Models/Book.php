@@ -8,8 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     protected $guarded = [];
-    public function scopeGetBooksList($query)
-    {
-        return $query;
-    }
+
 }
