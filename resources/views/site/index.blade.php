@@ -19,6 +19,8 @@
                         <td><?php echo $book['title']?></td>
                         <td><?php echo $book['publication_year']?></td>
                         <td><?php echo $book['created_at']?></td>
+                        <td><a href="/book/update/<?php echo $book['id']; ?>"
+                               class="btn btn-primary">Редактировать</a>
                     </tr>
                 @endforeach
             @endif

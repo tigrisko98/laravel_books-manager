@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', '\App\Http\Controllers\SiteController@index')->name('index');
-Route::get('/book/create', '\App\Http\Controllers\BookController@createBook')->name('createBook');
-Route::post('/book/create', '\App\Http\Controllers\BookController@createBook')->name('createBook');
+
+Route::any('/book/create', '\App\Http\Controllers\BookController@createBook')->name('createBook');
+
+Route::any('book/update/{id}', '\App\Http\Controllers\BookController@updateBook')->name('updateBook');
+
