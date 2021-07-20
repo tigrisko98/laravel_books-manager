@@ -14,4 +14,5 @@ class SiteController extends Controller
 
         return view('/site/index', ['booksList' => $booksList]);
     }
+
 }

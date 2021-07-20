@@ -46,4 +46,12 @@ class BookController extends Controller
         }
         return view('/book/update', ['book' => $book]);
     }
+
+    public function deleteBook($id)
+    {
+        Book::where('id', $id)
+            ->update(['is_archived' => 1]);
+        return redirect('/');
+
+    }
 }
