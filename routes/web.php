@@ -20,3 +20,5 @@ Route::any('/book/create', '\App\Http\Controllers\BookController@createBook')->n
 Route::any('book/update/{id}', '\App\Http\Controllers\BookController@updateBook')->name('updateBook');
 
 Route::get('book/delete/{id}', '\App\Http\Controllers\BookController@deleteBook')->name('deleteBook');
+
+Route::get('/book/{id}', '\App\Http\Controllers\BookController@viewBook')->name('viewBook');

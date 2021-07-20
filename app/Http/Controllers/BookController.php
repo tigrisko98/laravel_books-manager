@@ -54,4 +54,12 @@ class BookController extends Controller
         return redirect('/');
 
     }
+
+    public function viewBook($id)
+    {
+        $book = Book::where('id', $id)
+            ->first();
+
+        return view('book/view', ['book' => $book]);
+    }
 }
