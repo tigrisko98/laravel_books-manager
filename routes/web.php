@@ -22,3 +22,5 @@ Route::any('book/update/{id}', '\App\Http\Controllers\BookController@updateBook'
 Route::get('book/delete/{id}', '\App\Http\Controllers\BookController@deleteBook')->name('deleteBook');
 
 Route::get('/book/{id}', '\App\Http\Controllers\BookController@viewBook')->name('viewBook');
+
+Route::post('/book/comment/{id}', '\App\Http\Controllers\BookController@commentBook')->name('commentBook');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Book;
 
@@ -59,7 +60,22 @@ class BookController extends Controller
     {
         $book = Book::where('id', $id)
             ->first();
+        $comments = Comment::where('book_id', $id)
+            ->get();
 
-        return view('book/view', ['book' => $book]);
+        return view('book/view', ['book' => $book, 'comments' => $comments]);
+    }
+
+    public function commentBook($id)
+    {
+        if (isset($_POST['submit'])) {
+            $comment = Book::find(1);
+            $comment->comments()->create([
+                'book_id' => $id,
+                'content' => $_POST['content'],
+                'rating' => 10
+            ]);
+            return redirect("book/$id");
+        }
     }
 }

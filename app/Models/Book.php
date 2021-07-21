@@ -13,4 +13,9 @@ class Book extends Model
     {
         return $query->where('is_archived', 0);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
