@@ -78,4 +78,11 @@ class BookController extends Controller
             return redirect("book/$id");
         }
     }
+
+    public function viewComments($book_id)
+    {
+        $comments = Comment::where('book_id', $book_id)
+            ->get();
+        return view('book/comments', ['comments' => $comments]);
+    }
 }

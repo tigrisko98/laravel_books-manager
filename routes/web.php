@@ -23,4 +23,5 @@ Route::get('book/delete/{id}', '\App\Http\Controllers\BookController@deleteBook'
 
 Route::get('/book/{id}', '\App\Http\Controllers\BookController@viewBook')->name('viewBook');
 
+Route::get('/book/comments/{id}', '\App\Http\Controllers\BookController@viewComments')->name('viewComments');
 Route::post('/book/comment/{id}', '\App\Http\Controllers\BookController@commentBook')->name('commentBook');
