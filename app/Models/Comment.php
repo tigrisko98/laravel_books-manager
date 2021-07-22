@@ -9,4 +9,9 @@ class Comment extends Model
 {
     protected $guarded = [];
 
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
+
 }

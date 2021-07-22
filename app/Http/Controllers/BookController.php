@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use function Sodium\increment;
 
 class BookController extends Controller
 {
@@ -58,8 +59,8 @@ class BookController extends Controller
 
     public function viewBook($id)
     {
-        $book = Book::where('id', $id)
-            ->first();
+        $book = Book::find($id);
+        $book->increment('views');
         $comments = Comment::where('book_id', $id)
             ->get();
         $avg_rating = round(Comment::where('book_id', $id)

@@ -9,6 +9,7 @@
                     <h4>{{$book['title']}}</h4>
                     <p class="card-text">Автор книги: {{$book['author_name']}}</p>
                     <p class="card-text">Год публикации: {{$book['publication_year']}}</p>
+                    <p class="card-text">Количество просмотров: {{$book['views']}}</p>
                     <p class="card-text">Средння оценка: {{$avg_rating}}</p>
                 </div>
             </div>
