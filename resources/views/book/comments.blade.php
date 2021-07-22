@@ -1,5 +1,5 @@
 @include('layouts/header')
-<div class="container">
+<div class="container" style="margin-top: 25px">
     <div class="row">
         <div class="col-12">
             <h4>Комментарии:</h4>
@@ -22,7 +22,8 @@
                 </table>
             @else
                 <p>К этой книге ещё никто не оставлял комментарии. Вы можете стать первым!
-                    <a href="/book/{{mb_substr(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 15)}}">Оставить комментарий</a>
+                    <a href="/book/{{mb_substr(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 15)}}">Оставить
+                        комментарий</a>
                 </p>
             @endif
         </div>

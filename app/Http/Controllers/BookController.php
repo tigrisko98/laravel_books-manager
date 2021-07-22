@@ -62,8 +62,10 @@ class BookController extends Controller
             ->first();
         $comments = Comment::where('book_id', $id)
             ->get();
+        $avg_rating = round(Comment::where('book_id', $id)
+            ->avg('rating'), 2);
 
-        return view('book/view', ['book' => $book, 'comments' => $comments]);
+        return view('book/view', ['book' => $book, 'comments' => $comments, 'avg_rating' => $avg_rating]);
     }
 
     public function commentBook($id)

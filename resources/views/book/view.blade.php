@@ -1,7 +1,7 @@
 @include('layouts/header')
 <div class="container">
     <div class="row">
-        <div class="col-3">
+        <div class="col-4">
             <div class="card" style="width: 18rem;">
             <!--   <img src="{{$book['image_url']}}" class="card-img-top" width="200"
                      alt=""> -->
@@ -9,11 +9,12 @@
                     <h4>{{$book['title']}}</h4>
                     <p class="card-text">Автор книги: {{$book['author_name']}}</p>
                     <p class="card-text">Год публикации: {{$book['publication_year']}}</p>
+                    <p class="card-text">Средння оценка: {{$avg_rating}}</p>
                 </div>
             </div>
         </div>
 
-        <div class="col-9">
+        <div class="col-8">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="leave-comment-tab" data-bs-toggle="tab"
