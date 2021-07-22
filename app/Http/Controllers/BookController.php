@@ -73,7 +73,7 @@ class BookController extends Controller
             $comment->comments()->create([
                 'book_id' => $id,
                 'content' => $_POST['content'],
-                'rating' => 10
+                'rating' => $_POST['rating']
             ]);
             return redirect("book/$id");
         }

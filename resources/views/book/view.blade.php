@@ -38,6 +38,19 @@
                             <textarea name="content" class="form-control" id="content"
                                       placeholder="Оставьте Ваш комментарий к книге"></textarea>
                         </p>
+                        <label for="rating" class="form-label">Оценка</label>
+                        <p>
+                            <select name="rating" class="form-select form-select-sm"
+                                    aria-label=".form-select-sm example">
+                                <option selected>Поставьте оценку книге</option>
+                                <?php for ($i = 1; $i <= 10; $i++) {
+                                    echo "<option value=" . $i . ">$i</option>";
+                                }
+                                ?>
+
+
+                            </select>
+                        </p>
                         <input type="submit" name="submit" class="btn btn-primary mb-3" value="Отправить комментарий">
                     </form>
                 </div>
