@@ -20,10 +20,10 @@
                     <input type="text" name="publication_year" class="form-control" id="publication_year"
                            placeholder="Введите год публикации книги">
                 </div>
-              <!--  <div class="mb-3">
+                <div class="mb-3">
                     <label for="image" class="form-label">Изображение книги</label>
                     <input type="file" name="image" class="form-control" id="image" placeholder="" value="">
-                </div> -->
+                </div>
                 <input type="submit" name="submit" class="btn btn-primary mb-3" value="Создать книгу">
             </form>
         </div>

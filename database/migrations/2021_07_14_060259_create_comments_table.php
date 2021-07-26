@@ -15,10 +15,14 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->integer('book_id');
+            $table->bigInteger('book_id');
             $table->string('content');
             $table->float('rating');
             $table->timestamps();
+        });
+
+        Schema::table('comments', function($table) {
+            $table->foreign('book_id')->references('id')->on('books');
         });
     }
 
@@ -29,6 +33,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::drop('comments');
     }
 }

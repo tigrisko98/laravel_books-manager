@@ -5,21 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use Illuminate\Support\Facades\Storage;
 use function Sodium\increment;
 
 class BookController extends Controller
 {
-    public function createBook()
+    public function createBook(Request $request)
     {
         if (isset($_POST['submit'])) {
+            $file = $request->file('image')->store('images');
             Book::create(
                 [
-                    'author_name' => $_POST['author_name'],
-                    'title' => $_POST['title'],
-                    'slug' => $_POST['title'],
-                    'publication_year' => $_POST['publication_year'],
+                    'author_name' => $request->author_name,
+                    'title' => $request->title,
+                    'slug' => $request->title,
+                    'publication_year' => $request->publication_year,
                     'is_archived' => 0,
-                    'image_url' => '#'
+                    'image_url' => basename($file)
                 ]
             );
             return redirect('/');
