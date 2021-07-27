@@ -3,8 +3,13 @@
     <div class="row">
         <div class="col-4">
             <div class="card" style="width: 18rem;">
-            <img src="{{\Illuminate\Support\Facades\Storage::url("app/images/" . $book['image_url'])}}" class="card-img-top" width="200"
+              <img src="{{Storage::url("images/" . $book['image_url'])}}" class="card-img-top"
+                     width="200"
                      alt="">
+                <div>
+
+
+                </div>
                 <div class="card-body">
                     <h4>{{$book['title']}}</h4>
                     <p class="card-text">Автор книги: {{$book['author_name']}}</p>

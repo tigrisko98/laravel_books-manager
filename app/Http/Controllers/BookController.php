@@ -12,8 +12,8 @@ class BookController extends Controller
 {
     public function createBook(Request $request)
     {
-        if (isset($_POST['submit'])) {
-            $file = $request->file('image')->store('images');
+        if (isset($request->submit)) {
+            $file = $request->file('image')->store('public/images');
             Book::create(
                 [
                     'author_name' => $request->author_name,
@@ -30,20 +30,21 @@ class BookController extends Controller
 
     }
 
-    public function updateBook($id)
+    public function updateBook(Request $request, $id)
     {
         $book = Book::where('id', $id)
             ->first();
-        if (isset($_POST['submit'])) {
+        if (isset($request->submit)) {
+            $file = $request->file('image')->store('public/images');
             Book::where('id', $id)
                 ->update(
                     [
-                        'author_name' => $_POST['author_name'],
-                        'title' => $_POST['title'],
-                        'slug' => $_POST['title'],
-                        'publication_year' => $_POST['publication_year'],
+                        'author_name' => $request->author_name,
+                        'title' => $request->title,
+                        'slug' => $request->title,
+                        'publication_year' => $request->publication_year,
                         'is_archived' => 0,
-                        'image_url' => '#'
+                        'image_url' => basename($file)
                     ]
                 );
             return redirect('/');

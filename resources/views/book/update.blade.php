@@ -23,11 +23,11 @@
                            placeholder="Введите год публикации книги"
                            value="{{$book['publication_year']}}">
                 </div>
-            <!--<div class="mb-3">
+                <div class="mb-3">
                     <label for="image" class="form-label">Изображение книги</label><br>
-                    <img src="{{$book['image_url']}}" width="200" alt=""><br><br>
+                    <img src="{{Storage::url("images/" . $book['image_url'])}}" width="200" alt=""><br><br>
                     <input type="file" name="image" class="form-control" id="image" placeholder="" value="">
-                </div>-->
+                </div>
                 <input type="submit" name="submit" class="btn btn-primary mb-3" value="Обновить данные">
             </form>
         </div>
