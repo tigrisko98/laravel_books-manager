@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Http\Requests\CreateBookPostRequest;
 use Illuminate\Support\Facades\Storage;
 use function Sodium\increment;
 
@@ -12,7 +13,15 @@ class BookController extends Controller
 {
     public function createBook(Request $request)
     {
-        if (isset($request->submit)) {
+        if ($request->submit) {
+
+            $this->validate($request, [
+                'author_name' => 'required|string',
+                'title' => 'required|unique:books,title',
+                'publication_year' => 'required',
+                'image' => 'required|image|max:2048'
+            ]);
+
             $file = $request->file('image')->store('public/images');
             Book::create(
                 [
