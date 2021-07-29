@@ -43,7 +43,15 @@ class BookController extends Controller
     {
         $book = Book::where('id', $id)
             ->first();
-        if (isset($request->submit)) {
+        if ($request->submit) {
+
+            $this->validate($request, [
+                'author_name' => 'required|string',
+                'title' => 'required|unique:books,title',
+                'publication_year' => 'required',
+                'image' => 'required|image|max:2048'
+            ]);
+
             $file = $request->file('image')->store('public/images');
             Book::where('id', $id)
                 ->update(
@@ -75,21 +83,28 @@ class BookController extends Controller
         $book->increment('views');
         $comments = Comment::where('book_id', $id)
             ->get();
+
         $avg_rating = round(Comment::where('book_id', $id)
             ->avg('rating'), 2);
 
         return view('book/view', ['book' => $book, 'comments' => $comments, 'avg_rating' => $avg_rating]);
     }
 
-    public function commentBook($id)
+    public function commentBook(Request $request, $id)
     {
-        if (isset($_POST['submit'])) {
+        if ($request->submit) {
+            $this->validate($request, [
+                'content' => 'required|string|max:500',
+                'rating' => 'required'
+            ]);
+
             $comment = Book::find(1);
             $comment->comments()->create([
                 'book_id' => $id,
                 'content' => $_POST['content'],
-                'rating' => $_POST['rating']
+                'rating' => $request->rating
             ]);
+
             return redirect("book/$id");
         }
     }

@@ -4,11 +4,10 @@
         <div class="col-12">
             <h3>Добавление новой книги</h3>
             <form action="/book/create" method="POST" enctype="multipart/form-data">
-                @csrf
                 {{ csrf_field() }}
                 <div class="mb-3">
                     <label for="author_name" class="form-label">Автор</label>
-                    <input type="text" name="author_name" value="{{ old("author_name") }}" class="form-control"
+                    <input type="text" name="author_name" value="{{ old('author_name') }}" class="form-control"
                            id="author_name"
                            placeholder="Введите автора книги">
                 </div>

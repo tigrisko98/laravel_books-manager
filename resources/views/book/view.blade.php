@@ -43,13 +43,13 @@
                         <label for="content" class="form-label">Комментарий</label>
                         <p>
                             <textarea name="content" class="form-control" id="content"
-                                      placeholder="Оставьте Ваш комментарий к книге"></textarea>
+                                      placeholder="Оставьте Ваш комментарий к книге">{{old('content')}}</textarea>
                         </p>
                         <label for="rating" class="form-label">Оценка</label>
                         <p>
                             <select name="rating" class="form-select form-select-sm"
                                     aria-label=".form-select-sm example">
-                                <option selected>Поставьте оценку книге</option>
+                                <option selected disabled>Поставьте оценку книге</option>
                                 <?php for ($i = 1; $i <= 10; $i++) {
                                     echo "<option value=" . $i . ">$i</option>";
                                 }
@@ -65,4 +65,13 @@
         </div>
     </div>
 </div>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @include('layouts/footer')
