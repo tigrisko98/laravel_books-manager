@@ -14,7 +14,6 @@ class BookController extends Controller
     public function createBook(Request $request)
     {
         if ($request->submit) {
-
             $this->validate($request, [
                 'author_name' => 'required|string',
                 'title' => 'required|unique:books,title',
@@ -94,14 +93,13 @@ class BookController extends Controller
     {
         if ($request->submit) {
             $this->validate($request, [
-                'content' => 'required|string|max:500',
+                'comment_content' => 'required|string|max:500',
                 'rating' => 'required'
             ]);
 
-            $comment = Book::find(1);
-            $comment->comments()->create([
+            Comment::create([
                 'book_id' => $id,
-                'content' => $_POST['content'],
+                'comment_content' => $request->comment_content,
                 'rating' => $request->rating
             ]);
 
@@ -113,6 +111,6 @@ class BookController extends Controller
     {
         $comments = Comment::where('book_id', $book_id)
             ->get();
-        return view('book/comments', ['comments' => $comments]);
+        return view('book/comments', ['comments' => $comments, 'book_id' => $book_id]);
     }
 }

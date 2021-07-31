@@ -42,7 +42,7 @@
                         {{ csrf_field() }}
                         <label for="content" class="form-label">Комментарий</label>
                         <p>
-                            <textarea name="content" class="form-control" id="content"
+                            <textarea name="comment_content" class="form-control" id="content"
                                       placeholder="Оставьте Ваш комментарий к книге">{{old('content')}}</textarea>
                         </p>
                         <label for="rating" class="form-label">Оценка</label>

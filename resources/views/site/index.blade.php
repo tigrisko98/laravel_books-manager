@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            @if(!empty($booksList))
+            @if($booksList->isNotEmpty())
                 <table class="table">
                     <tr>
                         <th scope="col">ID</th>
@@ -26,6 +26,8 @@
                         </tr>
                     @endforeach
                 </table>
+            @else
+                <p>На данный момент нет добавленных книг. Нажмите "Добавить книгу" в навигационном меню чтобы добавить книгу!</p>
             @endif
         </div>
     </div>

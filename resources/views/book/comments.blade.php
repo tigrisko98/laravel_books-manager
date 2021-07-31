@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-12">
             <h4>Комментарии:</h4>
-            @if ($comments)
+            @if ($comments->isNotEmpty())
                 <table class="table">
                     <tr>
                         <th scope="col">ID</th>
@@ -14,7 +14,7 @@
                     @foreach ($comments as $comment)
                         <tr>
                             <td>{{$comment['id']}}</td>
-                            <td>{{$comment['content']}}</td>
+                            <td>{{$comment['comment_content']}}</td>
                             <td>{{$comment['rating']}}</td>
                             <td>{{$comment['created_at']}}</td>
                         </tr>
@@ -22,7 +22,7 @@
                 </table>
             @else
                 <p>К этой книге ещё никто не оставлял комментарии. Вы можете стать первым!
-                    <a href="/book/{{mb_substr(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 15)}}">Оставить
+                    <a href="/book/{{$book_id}}">Оставить
                         комментарий</a>
                 </p>
             @endif
