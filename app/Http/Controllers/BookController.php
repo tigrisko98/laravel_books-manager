@@ -42,16 +42,56 @@ class BookController extends Controller
     {
         $book = Book::where('id', $id)
             ->first();
-        if ($request->submit) {
+        if ($request->submit && (!isset($request->image) && $book['title'] == $request->title)) {
 
+            $this->validate($request, [
+                'author_name' => 'required|string',
+                //'title' => 'required|unique:books,title',
+                'publication_year' => 'required',
+                //'image' => 'image|max:2048'
+            ]);
+
+            //$file = $request->file('image')->store('public/images');
+            Book::where('id', $id)
+                ->update(
+                    [
+                        'author_name' => $request->author_name,
+                        'title' => $request->title,
+                        'slug' => $request->title,
+                        'publication_year' => $request->publication_year,
+                        'is_archived' => 0,
+                        'image_url' => $book['image_url']
+                    ]
+                );
+            return redirect('/');
+        } elseif ($request->submit && $book['title'] != $request->title){
             $this->validate($request, [
                 'author_name' => 'required|string',
                 'title' => 'required|unique:books,title',
                 'publication_year' => 'required',
-                'image' => 'required|image|max:2048'
+            ]);
+
+            Book::where('id', $id)
+                ->update(
+                    [
+                        'author_name' => $request->author_name,
+                        'title' => $request->title,
+                        'slug' => $request->title,
+                        'publication_year' => $request->publication_year,
+                        'is_archived' => 0,
+                        'image_url' => $book['image_url']
+                    ]
+                );
+            return redirect('/');
+        } elseif ($request->submit){
+            $this->validate($request, [
+                'author_name' => 'required|string',
+                'publication_year' => 'required',
+                'image' => 'image|max:2048'
             ]);
 
             $file = $request->file('image')->store('public/images');
+
             Book::where('id', $id)
                 ->update(
                     [
@@ -65,6 +105,7 @@ class BookController extends Controller
                 );
             return redirect('/');
         }
+
         return view('/book/update', ['book' => $book]);
     }
 
